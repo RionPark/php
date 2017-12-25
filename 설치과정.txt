@@ -1,0 +1,19 @@
+1. php 설치
+ url : http://windows.php.net/download/#php-7.0-ts-VC14-x64
+
+2. apache 설치
+ url : https://www.apachelounge.com/download/
+
+3. vscode 설치
+
+4. php pulg-in 설치
+ - php intellisense
+ - php debug
+ - php server
+
+5. vscode setting
+{
+    "php.validate.enable":true,
+    "php.validate.executablePath" : "D:/php/php7.0.26/php.exe",
+    "php.validate.run" : "onSave"
+}
