@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="red">
+    <title>login.html</title>
+</head>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        let test = $("#id").val();
+        alert(test);
+        $("#loginBtn").click(function(){
+            var param = {};
+            param["id"] = $("#id").val();
+            param["pwd"] = $("#pwd").val();
+            $.ajax({
+                //type : http의 메소드를 결정
+                type:"get",
+                //요청을 보낼 url, form tag의 action이라고 생각하면 쉬움.
+                url:"./login3.php",
+                //data 내가 보낼 파라메터들
+                data : param,
+                //내가 받을 데이터 타입 text, html, json, xml
+                dataType : "json",
+                //제대로 응답이 왔을때 200번대의 status값
+                success: function(res){
+                    if(res.error){
+                        alert(res.error);
+                        return;
+                    }
+                    alert(res.msg);
+                    if(res.url){
+                        location.href = res.url;
+                    }
+                },
+                //요청에 대한 응답이 에러가 났을때
+                error: function(xhr, status, error) {
+                    alert(error);
+                }  
+            });
+        });
+    });
+</script>
+<body>
+    <form action="./login3.php" method="get">
+        <table border="1" width="500">
+            <tr>
+                <th colspan="2">로그인</th>
+            </tr>
+            <tr>
+                <th>아이디</th>
+                <td><input type="text" name="id" id="id"></td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="text" name="pwd" id="pwd"></td>
+            </tr>
+            <tr>
+                <th colspan="2"><input type="button" value="Login" id="loginBtn"></th>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

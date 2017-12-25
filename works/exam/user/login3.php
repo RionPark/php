@@ -1,5 +1,6 @@
 <?php
-include_once '../conf/dbcon.php';
+include_once "../conf/dbcon.php";
+header("Content-Type: application/json");
 
 $db = new DBCon();
 $con = $db->getConnection();
@@ -7,34 +8,35 @@ $con = $db->getConnection();
 $id = $_GET["id"];
 $pwd = $_GET["pwd"];
 
-$sql = "select uipwd from user_info where uiid=:id";
+$sql = "select * from user_info where uiid=:id";
 
 try{
     $stmt = $con->prepare($sql);
-    $stmt->bindParam(':id',$id);
+    $stmt->bindParam(":id",$id);
     $stmt->execute();
+    $con = null;
 }catch(PDOException $exception){
-    echo "Connection error: " . $exception->getMessage();
+    echo json_encode(array("error"=>$exception->getMessage()));
     exit;
 }
 $num = $stmt->rowCount();
-
-echo $num;
 if($num==1){
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         if($pwd == $uipwd){
-            echo '로긴 성공';
+            session_start();
+            $_SESSION["user"] = $row;
+            $result = true;
+            $msg = "로그인이 성공하셨습니다.";
+            $url = "/index.php";
         }else{
-            echo '비밀번호 틀림';
+            $msg = "비밀번호 틀림";
         }
     }
 }else{
-    echo '아이디 틀림';
+    $msg =  "아이디 틀림";
 }
+echo json_encode(array("msg"=>$msg,"url"=>$url));
 exit;
-session_start();
-$_SESSION["id"] = $id;
-$_SESSION["pwd"] = $pwd;
 //header("Location:/index.php");
 ?>

@@ -1,0 +1,14 @@
+create database php;
+use php;
+
+create table user_info(
+uino int auto_increment primary key,
+uiid varchar(100) unique,
+uiname varchar(100) not null,
+uiage int not null,
+uipwd varchar(100) not null);
+insert into user_info(uiid, uiname, uiage, uipwd)
+values('red','홍길동',20,'red'),
+('blue','청길동',20,'blue'),
+('black','흑길동',20,'black'),
+('white','백길동',20,'white');

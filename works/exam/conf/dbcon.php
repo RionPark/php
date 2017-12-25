@@ -2,7 +2,7 @@
 
 class DBCon {
     private $host = "localhost";
-    private $db_name = "iot2";
+    private $db_name = "php";
     private $username = "root";
     private $password = "r1r2r3";
     private $conn;
