@@ -25,9 +25,9 @@ try{
 </head>
 <script src="/js/jquery-3.2.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="/css/bootstrap-grid.min.css"/>
 <link rel="stylesheet" href="/css/bootstrap-reboot.min.css"/>
-<link rel="stylesheet" href="/css/bootstrap.min.css"/>
 <body>
     <br>
     <div class="container">
