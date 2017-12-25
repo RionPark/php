@@ -13,26 +13,30 @@
 
 5. vscode setting
 {
-    "php.validate.executablePath" : "D:\\xamp\\php\\php.exe",
+    "php.validate.executablePath":"D:/php/php-7.0.26/php.exe",
     "php.validate.enable": true,
     "php.validate.run": "onSave",
     "php.suggest.basic": true,
-    "phpserver.phpPath": "D:\\xamp\\php\\php.exe"
+    "phpserver.phpPath": "D:/php/php-7.0.26/php.exe",
+    "phpserver.port" : 80,
+    "window.zoomLevel": 1
 }
  
 6. php 설정
- extension_dir = 설치 경로\ext
+ extension_dir = "D:\php\php-7.0.26\ext"
  extension=php_mysql.dll
  extension=php_mysqli.dll
  extension=php_pdo_mysql.dll
 
 7. 환경 변수 등록(아파치, php)
-  D:\php\httpd-2.4.29\Apache24
+  D:\php\httpd-2.4.29\Apache24\bin
   D:\php\php-7.0.26
 
   - 수동으로 서버 실행시킬 경우 인스톨을 해야함 -> httpd -k install
+  - dll오류로 인스톨이 안될경우 -> https://www.microsoft.com/ko-kr/download/confirmation.aspx?id=48145
+    다운로드 후 설치
 8. apache->conf->httpd.conf 파일 수정
- 1) ServerRoot "c:/Apache24"
+ 1) ServerRoot "D:\php\httpd-2.4.29\Apache24"
  2) Listen 80 => 본인이 원하는 포트
  3) DocumentRoot "본인의 프로젝트 경로"
  4) 아래내용 추가
@@ -43,7 +47,7 @@
   #configure the path to php.ini
   PHPIniDir "D:\php\php-7.0.26"
 
-9. vscode에서 실행
+9. phpserver vscode에서 실행
   1) 서버실행 : ctrl + shift + p -> php :Serving Project
   2) 서버 종료 : ctrl + shift + p -> php :stop Project
 
